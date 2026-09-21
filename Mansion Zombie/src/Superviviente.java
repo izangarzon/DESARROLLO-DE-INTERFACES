@@ -27,11 +27,35 @@ public class Superviviente {
     }
 
     //Curacion
-    public void curarse(){
-        vidaActual=vidaActual+4;
-        if (vidaActual>vidaMaxima){
-            vidaActual=vidaMaxima;
+    public void curarse() {
+        vidaActual = vidaActual + 4;
+        if (vidaActual > vidaMaxima) {
+            vidaActual = vidaMaxima;
         }
+
+        tieneBotiquin = false;
+    }
+
+    //Comprobar si esta vivo
+    public boolean estaVivo() {
+        if (vidaActual > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //Coger Objetos
+    public void cogerBotiquin() {
+        tieneBotiquin = true;
+    }
+
+    public void cogerArma() {
+        armas++;
+    }
+
+    public void cogerProteccion() {
+        protecciones++;
     }
 
     //Getters
@@ -59,29 +83,4 @@ public class Superviviente {
         return protecciones;
     }
 
-
-    //Setters
-    public void setVidaMaxima(int vidaMaxima) {
-        this.vidaMaxima = vidaMaxima;
-    }
-
-    public void setVidaActual(int vidaActual) {
-        this.vidaActual = vidaActual;
-    }
-
-    public void setAtaque(int ataque) {
-        this.ataque = ataque;
-    }
-
-    public void setTieneBotiquin(boolean tieneBotiquin) {
-        this.tieneBotiquin = tieneBotiquin;
-    }
-
-    public void setArmas(int armas) {
-        this.armas = armas;
-    }
-
-    public void setProtecciones(int protecciones) {
-        this.protecciones = protecciones;
-    }
 }

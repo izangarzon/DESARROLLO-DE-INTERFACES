@@ -20,6 +20,15 @@ public class Zombie {
         }
     }
 
+    //Comprobar si esta vivo
+    public boolean estaVivo() {
+        if (vida > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     //Getters
     public int getVida() {
         return vida;
@@ -29,12 +38,4 @@ public class Zombie {
         return ataque;
     }
 
-    //Setters
-    public void setVida(int vida) {
-        this.vida = vida;
-    }
-
-    public void setAtaque(int ataque) {
-        this.ataque = ataque;
-    }
 }
