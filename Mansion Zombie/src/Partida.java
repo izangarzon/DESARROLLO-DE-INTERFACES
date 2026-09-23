@@ -51,6 +51,7 @@ public class Partida {
 
     }
 
+    //Menu general
     public void mostrarMenu() {
         System.out.println("--------------------------");
         System.out.println("habitacion: " + habitacionActual + "/" + maxHabitaciones);
@@ -76,11 +77,12 @@ public class Partida {
 
     }
 
+    //Combate
     public void combatir() {
         Zombie zombie = new Zombie(habitacionActual);
         System.out.println("¡Aparece un zombie!");
         System.out.println("Vida del zombie: " + zombie.getVida());
-        System.out.println("Vida del zombie: " + zombie.getAtaque());
+        System.out.println("Ataque del zombie: " + zombie.getAtaque());
 
 
         while (zombie.estaVivo() && superviviente.estaVivo()) {
@@ -110,15 +112,78 @@ public class Partida {
             System.out.println("Realiza " + danioZombie + " de danio");
 
             superviviente.recibirDanio(danioZombie);
-            System.out.println("vida: " + superviviente.getVidaActual());
+            System.out.println("Tu vida: " + superviviente.getVidaActual());
 
         }
 
     }
 
+    //Haces Ruido
+    public void hacerRuido() {
 
+        int resultado = random.nextInt(100) + 1;
+
+        System.out.println("Tirada por el ruido y sale: " + resultado);
+
+        if (resultado <= 40) {
+            System.out.println("No ha pasado nada");
+
+        } else if (resultado <= 80) {
+            System.out.println("Ha aparecido un Zombie");
+            zombiesActivos++;
+
+        } else {
+            System.out.println("Han aparecido dos Zombies");
+            zombiesActivos = zombiesActivos + 2;
+        }
+
+    }
+
+    //Busqueda
+    public void buscar() {
+        busquedas--;
+
+        int resultado = random.nextInt(100) + 1;
+
+        System.out.println();
+        System.out.println("Buscando...");
+        System.out.println("Has sacado " + resultado);
+
+        if (resultado <= 75) {
+            System.out.println("¡Has hecho RUIDO!");
+            //hacerRuido();
+
+        } else if (resultado <= 90) {
+
+            if (!superviviente.isTieneBotiquin()) {
+                superviviente.cogerBotiquin();
+                System.out.println("Has encontrado un botiquin");
+            } else {
+                System.out.println("Has encontrado un botiquin, pero ya tenias uno.");
+            }
+
+        } else if (resultado <= 95) {
+            superviviente.cogerProteccion();
+            System.out.println("Has conseguido una proteccion");
+            System.out.println("Tienes: " + superviviente.getProtecciones() + " protecciones");
+
+        } else {
+            superviviente.cogerArma();
+            System.out.println("Has encontrado un arma");
+            System.out.println("Tienes " + superviviente.getArmas() + " armas");
+
+        }
+
+    }
+
+    //Curarse
+    public void curarse(){
+
+    }
+
+    //Main Prueba
     public static void main(String[] args) {
-        System.out.printf("Hello and welcome!");
+        System.out.print("Hello and welcome!");
 
         for (int i = 1; i <= 5; i++) {
             System.out.println("i = " + i);
@@ -126,5 +191,8 @@ public class Partida {
         Partida prueba = new Partida();
         prueba.elegirDificultad();
         prueba.mostrarMenu();
+        prueba.combatir();
+        prueba.buscar();
+        prueba.hacerRuido();
     }
 }
